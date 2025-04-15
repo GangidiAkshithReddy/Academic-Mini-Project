@@ -41,7 +41,7 @@ The system responds with possible causes, types of specialists to consult, and l
 
 Installation & Setup
 Clone the repository
-git clone https://github.com/yourusername/medquery.git
+
 
 Navigate to the project directory
 cd medquery
