@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Med Query</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="{{ url_for('static', filename='js/scripts.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>MED QUERY</h1>
+        <form method="POST">
+            <label for="symptoms">Enter your symptoms:</label><br>
+            <textarea id="symptoms" name="symptoms" rows="4" cols="50" placeholder="Describe your symptoms here..."></textarea><br><br>
+            <button type="submit">Check Symptoms</button>
+        </form>
+
+        {% if symptom_text %}
+        <div class="results">
+            <h2>Results for: "{{ symptom_text }}"</h2>
+
+            <div class="section">
+                <h3>Symptom Analysis:</h3>
+                <p>{{ gemini_summary }}</p>
+            </div>
+
+            <div class="section">
+                <h3>Recommended Specialists:</h3>
+                <ul>
+                    {% for specialist in specialists %}
+                    <li>{{ specialist }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>OpenFDA Drugs:</h3>
+                <ul>
+                    {% for drug in openfda_drugs %}
+                    <li>{{ drug }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
